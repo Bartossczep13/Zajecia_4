@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.IOException;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 class WrongAge extends Exception {}
 class WrongDateOfBirth extends Exception {}
 class WrongStudentName extends Exception { }
@@ -49,7 +52,16 @@ class Main {
       return age;
     }
     public static String ReadDate() throws WrongDateOfBirth{
-
+    scan.nextLine();
+      System.out.println("Pdaj datę urodzenia DD-MM-YYYY");
+      String date =scan.nextLine();
+      try{
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        format.parse(date);
+        return date;
+      }
+      catch(ParseException e){
+        throw new WrongDateOfBirth();
     }
     public static String ReadName() throws WrongStudentName {
         scan.nextLine();
