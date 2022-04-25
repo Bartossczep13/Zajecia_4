@@ -70,9 +70,11 @@ class Main {
         format.parse(date);
         return date;
       }
+      
       catch(ParseException e){
         throw new WrongDateOfBirth();
     }
+      }
     public static String ReadName() throws WrongStudentName {
         scan.nextLine();
         System.out.println("Podaj imie: ");
@@ -83,7 +85,7 @@ class Main {
         return name;
     }
 
-    public static void exercise1() throws IOException, WrongStudentName, WrongAge,       WrongDateOfBirth {
+    public static void exercise1() throws IOException, WrongStudentName, WrongAge,   WrongDateOfBirth {
         var name = ReadName();
         var date = ReadDate();
         var age = scan.nextInt();
