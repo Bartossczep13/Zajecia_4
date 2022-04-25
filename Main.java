@@ -2,11 +2,13 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 class WrongAge extends Exception {}
 class WrongDateOfBirth extends Exception {}
-class WrongStudentName extends Exception { }
+class WrongStudentName extends Exception {}
+class WrongMenuOption extends Exception {}
 
 class Main {
     public static Scanner scan = new Scanner(System.in);
@@ -32,17 +34,25 @@ class Main {
           catch(WrongDateOfBirth e){
              System.out.println("błędna data urodzenia studenta!");
           }
+          catch(WrongMenuOption e){
+             System.out.println("wybierz ponownie!");
+          }
 
         }
     }
 
-    public static int menu() {
+    public static int menu() throws WrongMenuOption {
         System.out.println("Wciśnij:");
         System.out.println("1 - aby dodać studenta");
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        return scan.nextInt();
+     try{
+       return scan.nextInt();
+     }   
+    catch (InputMismatchException e){
+      throw new WrongMenuOption();
+    }
     }
     public static int ReadAge() throws WrongAge{
       System.out.println("Podaj wiek: ");
